@@ -1,5 +1,5 @@
 public class hola{
     public hol(){
-        
+        System.out.println("hola");
     }
 }
