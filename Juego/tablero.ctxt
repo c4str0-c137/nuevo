@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=tablero
+comment1.params=nombreJugador1\ nombreJugador2
+comment1.target=tablero(java.lang.String,\ java.lang.String)
+comment10.params=x\ y\ p\ tabAux
+comment10.target=java.lang.Boolean\ posPeon(int,\ int,\ peon,\ int[][])
+comment11.params=
+comment11.target=int[][]\ getTab()
+comment2.params=
+comment2.target=void\ generarTabla()
+comment3.params=
+comment3.target=void\ imprimir()
+comment4.params=x\ y
+comment4.target=boolean\ movimientoPeon(int,\ int)
+comment5.params=x\ y
+comment5.target=boolean\ validarMovimientoDePeon(int,\ int)
+comment6.params=x\ y\ obj
+comment6.target=boolean\ validarMovimiento(int,\ int,\ int)
+comment7.params=x\ y
+comment7.target=boolean\ movimientoBarrera(int,\ int)
+comment8.params=x\ y
+comment8.target=boolean\ valMovDeBar(int,\ int)
+comment9.params=x\ y
+comment9.target=boolean\ avanzar(int,\ int)
+numComments=12

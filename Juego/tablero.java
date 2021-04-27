@@ -1,12 +1,10 @@
 package Juego;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 public class tablero {
 
     private jugador jugador1, jugador2;
     private int[][] tab;
-    private static int barrera=-1;
+    private static int barrera=3;
     private peon peon1, peon2;
     private boolean turno;
     public tablero(String nombreJugador1, String nombreJugador2){
@@ -35,11 +33,24 @@ public class tablero {
         tab[0][8]=2;
         tab[16][8]=4;
     }
+    
+    public void imprimir()
+    {
+        for(int i = 0; i<tab.length;i++)
+        {
+            for(int j = 0; j<tab[0].length;j++)
+            {
+                System.out.print(tab[i][j]+"  ");
+            }
+            System.out.println();
+        }
+    }
 
     public boolean movimientoPeon(int x, int y)
     {
         boolean res = false;
         if(turno)
+        {
             if(validarMovimientoDePeon(x, y))
             {
                 int[] pos = peon1.posPeon();
@@ -49,7 +60,7 @@ public class tablero {
                 res = true;
                 peon1.avanzar(x, y);
             }     
-        else
+        }else{
             if(validarMovimientoDePeon(x, y))
             {
                 int[] pos = peon2.posPeon();
@@ -59,6 +70,7 @@ public class tablero {
                 turno = true;
                 peon2.avanzar(x, y);
             }
+        }
         return res;    
     }
 
@@ -80,19 +92,32 @@ public class tablero {
 
     public boolean movimientoBarrera(int x, int y)
     {
-        boolean res = true;
-        if(validarMovimientoDeBarrera(x, y))
-            tab[x][y]=-1;
-        else 
-            res = false;
+        boolean res = false;
+        if(x%2==0 && valMovDeBar(x+1,y) && valMovDeBar(x+2,y))
+        {
+            res = true;
+            tab[x+2][y]=barrera;
+            tab[x+1][y]=barrera;
+            tab[x][y] =barrera;
+        }
+        if(x%2==1 && valMovDeBar(x,y+1) && valMovDeBar(x,y+2))
+        {
+            res = true;   
+            tab[x][y]=barrera;
+            tab[x][y+1]=barrera;
+            tab[x][y+2]=barrera;
+        }
         return res;
     }
     
-    private boolean validarMovimientoDeBarrera(int x, int y)
+    private boolean valMovDeBar(int x, int y)
     {
         boolean res = false;
-        if(validarMovimiento(x, y, 1))
-            res = true;
+        if(x<17 && y <17)
+            if(validarMovimiento(x, y, 1))
+            {
+                res = true;
+            }
         return res;
     }
 
@@ -101,27 +126,43 @@ public class tablero {
         boolean res = false;
         if(turno)
         {
-            if(posPeon(x, y, peon1))
+            if(posPeon(x, y, peon1,getTab()))
                 res = movimientoPeon(x, y);
         } 
         else 
         {
-            if(posPeon(x, y, peon2))
+            if(posPeon(x, y, peon2,getTab()))
                 res = movimientoPeon(x, y);
         }
         return res;
     }
 
-    public Boolean posPeon(int x, int y, peon p)
+    public Boolean posPeon(int x, int y, peon p, int[][] tabAux)
     {
         boolean res = false;
         int[] pos = p.posPeon();
-        if(pos[0]==x && pos[1]+2 == y)
-            res = true;
-        if(pos[0]==x && pos[1]-2==y)
-            res = true;
-        if(pos[0]+2==x && pos[1]==y)
-            res = true;        
+        int posX = pos[0];
+        int posY = pos[1];
+        if(posX  == x && posY+2 == y)
+            if(tabAux[x][(Math.abs(posY+y))/2]==1)
+            {
+                res = true;
+            }
+        if(posX  == x && posY-2 == y)
+            if(tabAux[x][(Math.abs(posY-y))/2]==1)
+            {
+                res = true;
+            }
+        if(posX+2== x && posY   == y)
+            if(tabAux[Math.abs((posX+x))/2][y]==1)
+            {
+                res = true;         
+            }
+        if(posX-2== x && posY   == y)
+            if(tabAux[Math.abs((posX-x))/2][y]==1)
+            {
+                res = true;       
+            }
         return res;
     }
 

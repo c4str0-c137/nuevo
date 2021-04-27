@@ -17,7 +17,7 @@ public class peon
     }
     public void avanzar(int x, int y)
     {
-        this.x = x;
-        this.y = y;
+        pos.setX(x);
+        pos.setY(y);
     }
 }

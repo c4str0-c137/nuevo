@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=jugador
+comment1.params=nombre
+comment1.target=jugador(java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getNombre()
+comment3.params=
+comment3.target=int\ getPuntaje()
+comment4.params=
+comment4.target=int\ getCantBarreras()
+comment5.params=
+comment5.target=void\ sumarPuntaje()
+comment6.params=
+comment6.target=void\ restarBarreras()
+numComments=7

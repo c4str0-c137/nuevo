@@ -14,7 +14,7 @@ public class jugador
 
     public String getNombre()
     {
-        return = nombre;
+        return nombre;
     }
     
     public int getPuntaje()
