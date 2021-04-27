@@ -124,4 +124,9 @@ public class tablero {
             res = true;        
         return res;
     }
-}
+
+    public int[][] getTab()
+    {
+        return tab;
+    }
+ }
